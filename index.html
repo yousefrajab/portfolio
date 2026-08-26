@@ -1,301 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yousef R. A. Al Khateeb | Portfolio</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
-    <!-- Google Fonts (Plus Jakarta Sans) -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8f9fa;
-            color: #2d3748;
-            scroll-behavior: smooth;
-        }
-        .navbar {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-        .hero-section {
-            padding: 120px 0 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            object-fit: cover;
-            border: 6px solid #fff;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .section-title {
-            position: relative;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 50px;
-            height: 4px;
-            background-color: #0d6efd;
-            border-radius: 2px;
-        }
-        .card {
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        .timeline {
-            border-left: 3px solid #0d6efd;
-            padding-left: 20px;
-            position: relative;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 30px;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -28px;
-            top: 5px;
-            width: 13px;
-            height: 13px;
-            border-radius: 50%;
-            background-color: #0d6efd;
-            border: 3px solid #fff;
-        }
-        .skill-badge {
-            background-color: #e9ecef;
-            color: #495057;
-            font-weight: 500;
-            padding: 8px 16px;
-            margin: 5px;
-            border-radius: 20px;
-            display: inline-block;
-            font-size: 0.9rem;
-        }
-        .skill-badge-tech {
-            background-color: #e3f2fd;
-            color: #0d6efd;
-        }
-        footer {
-            background-color: #1a202c;
-            color: #a0aec0;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yousef R. A. Al Khateeb | Back-End Web Developer</title>
+<meta name="description" content="Yousef R. A. Al Khateeb — Back-End Web Developer (PHP • Laravel • MySQL). Computer Systems Engineering graduate building reliable web systems.">
+<style>
+  :root{
+    --bg:#0b1220;
+    --bg2:#0f1830;
+    --card:#121d38;
+    --card2:#16224a;
+    --line:#233157;
+    --txt:#e8eefc;
+    --mut:#9fb0d0;
+    --acc:#4da3ff;
+    --acc2:#39e0c8;
+    --grad:linear-gradient(90deg,#4da3ff,#39e0c8);
+    --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:var(--sans);line-height:1.65;overflow-x:hidden}
+  ::selection{background:rgba(77,163,255,.35)}
+  a{color:var(--acc);text-decoration:none}
+  img{max-width:100%}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:99;background:rgba(11,18,32,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .navin{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{font-family:var(--mono);font-weight:700;font-size:1.05rem;color:var(--txt)}
+  .logo span{color:var(--acc)}
+  .links{display:flex;gap:26px;align-items:center}
+  .links a{color:var(--mut);font-size:.92rem;font-weight:500;transition:color .2s}
+  .links a:hover,.links a.active{color:var(--acc)}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:6px}
+  .burger span{display:block;width:22px;height:2px;background:var(--txt);margin:5px 0;border-radius:2px;transition:.25s}
+  @media(max-width:760px){
+    .links{position:fixed;inset:62px 0 auto 0;background:var(--bg2);flex-direction:column;gap:0;padding:10px 0;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:.3s}
+    .links.open{transform:translateY(0)}
+    .links a{padding:13px 26px;width:100%}
+    .burger{display:block}
+  }
+
+  /* ---------- hero ---------- */
+  header{min-height:100svh;display:flex;align-items:center;position:relative;padding:100px 0 60px;
+    background:
+      radial-gradient(600px 300px at 85% 15%,rgba(77,163,255,.14),transparent 65%),
+      radial-gradient(500px 320px at 10% 85%,rgba(57,224,200,.10),transparent 65%);}
+  header::before{content:"";position:absolute;inset:0;
+    background-image:linear-gradient(rgba(35,49,87,.28) 1px,transparent 1px),linear-gradient(90deg,rgba(35,49,87,.28) 1px,transparent 1px);
+    background-size:44px 44px;mask-image:radial-gradient(ellipse 75% 65% at 50% 40%,#000 30%,transparent 75%);pointer-events:none}
+  .hero{display:grid;grid-template-columns:1.25fr .75fr;gap:44px;align-items:center;position:relative}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;text-align:center}
+    .hero-l{order:2}.hero-r{order:1;margin:0 auto}}
+  .kicker{font-family:var(--mono);color:var(--acc2);font-size:.9rem;letter-spacing:.6px;margin-bottom:10px}
+  h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;letter-spacing:-.5px}
+  h1 .hl{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .typed-line{font-family:var(--mono);font-size:clamp(1rem,2.6vw,1.35rem);color:var(--mut);margin:14px 0 18px;min-height:1.6em}
+  .typed-line .cursor{display:inline-block;width:9px;background:var(--acc);margin-left:3px;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  .hero p.lead{color:var(--mut);max-width:56ch;margin-bottom:26px}
+  @media(max-width:860px){.hero p.lead{margin:0 auto 26px}}
+  .cta{display:flex;gap:14px;flex-wrap:wrap}
+  @media(max-width:860px){.cta{justify-content:center}}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border-radius:10px;font-weight:600;font-size:.95rem;transition:.2s;border:1px solid transparent}
+  .btn.pri{background:var(--grad);color:#06122a}
+  .btn.pri:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(77,163,255,.28)}
+  .btn.gho{border-color:var(--line);color:var(--txt)}
+  .btn.gho:hover{border-color:var(--acc);color:var(--acc)}
+  .socials{display:flex;gap:14px;margin-top:26px}
+  @media(max-width:860px){.socials{justify-content:center}}
+  .socials a{width:42px;height:42px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--mut);transition:.2s}
+  .socials a:hover{color:var(--acc);border-color:var(--acc);transform:translateY(-2px)}
+  .avatar{width:min(270px,68vw);aspect-ratio:1;border-radius:24px;position:relative;background:var(--card);overflow:hidden;border:1px solid var(--line)}
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .avatar .fallback{position:absolute;inset:0;display:none;place-items:center;font-size:4.2rem;font-weight:800;font-family:var(--mono);
+    background:linear-gradient(135deg,#16224a,#0f1830);color:var(--acc)}
+  .avatar::after{content:"";position:absolute;inset:-2px;border-radius:24px;background:var(--grad);z-index:-1;filter:blur(1px)}
+  .ring{position:absolute;inset:-12px;border:1px dashed rgba(77,163,255,.45);border-radius:28px;animation:spin 26s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* ---------- sections ---------- */
+  section{padding:78px 0}
+  .sec-t{display:flex;align-items:center;gap:16px;margin-bottom:38px}
+  .sec-t .no{font-family:var(--mono);color:var(--acc);font-size:.95rem}
+  .sec-t h2{font-size:clamp(1.5rem,3.4vw,2rem);letter-spacing:-.4px;white-space:nowrap}
+  .sec-t .rule{height:1px;background:var(--line);flex:1}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+
+  /* about */
+  .about-g{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
+  @media(max-width:860px){.about-g{grid-template-columns:1fr}}
+  .about-g p{color:var(--mut);margin-bottom:12px}
+  .about-g p b{color:var(--txt)}
+  .facts{display:grid;gap:12px;align-content:start}
+  .fact{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 16px}
+  .fact .ic{font-family:var(--mono);color:var(--acc2);font-size:.8rem}
+  .fact .tx{font-size:.92rem}
+  .fact .tx small{display:block;color:var(--mut);font-size:.78rem}
+
+  /* skills */
+  .sk-g{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.sk-g{grid-template-columns:1fr}}
+  .sk h3{font-family:var(--mono);font-size:.95rem;color:var(--acc);margin-bottom:14px}
+  .tags{display:flex;flex-wrap:wrap;gap:9px}
+  .tag{background:var(--card2);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:.85rem;color:var(--txt);transition:.2s}
+  .tag:hover{border-color:var(--acc);color:var(--acc);transform:translateY(-1px)}
+  .tag.hot{border-color:rgba(57,224,200,.5);color:var(--acc2)}
+
+  /* projects */
+  .proj-feat{display:grid;grid-template-columns:1.15fr .85fr;gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--card);margin-bottom:22px}
+  @media(max-width:860px){.proj-feat{grid-template-columns:1fr}}
+  .proj-feat .tx{padding:28px}
+  .proj-feat .vis{background:linear-gradient(145deg,#101b38,#0d1630);border-left:1px solid var(--line);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:30px;gap:16px}
+  @media(max-width:860px){.proj-feat .vis{border-left:0;border-top:1px solid var(--line)}}
+  .badge{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:1px;color:#06122a;background:var(--grad);padding:4px 12px;border-radius:99px;font-weight:700;margin-bottom:12px}
+  .proj h3{font-size:1.25rem;margin-bottom:4px}
+  .proj .meta{font-family:var(--mono);font-size:.8rem;color:var(--mut);margin-bottom:14px}
+  .proj p{color:var(--mut);font-size:.95rem;margin-bottom:14px}
+  .feat-l{list-style:none;margin-bottom:16px}
+  .feat-l li{padding-left:24px;position:relative;color:var(--mut);font-size:.92rem;margin-bottom:7px}
+  .feat-l li::before{content:"▹";position:absolute;left:0;color:var(--acc2)}
+  .codebox{font-family:var(--mono);font-size:.82rem;color:var(--acc2);background:rgba(11,18,32,.7);border:1px solid var(--line);border-radius:10px;padding:16px 18px;line-height:1.9;align-self:center;white-space:pre}
+  .codebox .c{color:#5f7396}.codebox .k{color:var(--acc)}
+  .proj-g{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.proj-g{grid-template-columns:1fr}}
+  .more-p{margin-top:22px}
+  .more-g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:860px){.more-g{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.more-g{grid-template-columns:1fr}}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;transition:.2s;display:block;color:var(--txt)}
+  .mini:hover{border-color:var(--acc);transform:translateY(-3px)}
+  .mini b{display:block;font-size:.95rem;margin-bottom:3px}
+  .mini small{color:var(--mut);font-size:.78rem;font-family:var(--mono)}
+
+  /* timeline */
+  .tl{position:relative;margin-left:8px;padding-left:30px;border-left:1px solid var(--line)}
+  .tl-item{position:relative;padding-bottom:30px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-36px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 4px rgba(77,163,255,.18)}
+  .tl-item .when{font-family:var(--mono);font-size:.8rem;color:var(--acc2);margin-bottom:4px}
+  .tl-item h3{font-size:1.1rem}
+  .tl-item .org{color:var(--acc);font-size:.92rem;margin-bottom:10px}
+  .tl-item ul{list-style:none}
+  .tl-item li{padding-left:22px;position:relative;color:var(--mut);font-size:.92rem;margin-bottom:6px}
+  .tl-item li::before{content:"▹";position:absolute;left:0;color:var(--acc2)}
+
+  /* certs */
+  .cert-g{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  @media(max-width:760px){.cert-g{grid-template-columns:1fr}}
+  .cert{position:relative;overflow:hidden}
+  .cert::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+  .cert .ic{font-size:1.5rem;margin-bottom:10px}
+  .cert h3{font-size:1.02rem;margin-bottom:5px}
+  .cert p{color:var(--mut);font-size:.88rem}
+  .cert .hrs{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:.75rem;color:var(--acc2);border:1px solid rgba(57,224,200,.4);border-radius:99px;padding:3px 10px}
+  .cert.new{border-color:rgba(77,163,255,.55)}
+
+  /* contact */
+  .contact-box{text-align:center;padding:52px 26px}
+  .contact-box h2{font-size:clamp(1.5rem,3.4vw,2.1rem);margin-bottom:10px}
+  .contact-box p{color:var(--mut);max-width:52ch;margin:0 auto 26px}
+  .c-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--mut);font-size:.85rem}
+  footer .mono{font-family:var(--mono);color:var(--acc)}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+  .rv.on{opacity:1;transform:none}
+</style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="#">YOUSEF R. A.</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto fw-semibold">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#education">Education & Certs</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav>
+  <div class="wrap navin">
+    <a href="#top" class="logo">yousef<span>.dev</span></a>
+    <div class="links" id="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-center text-md-start">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-4 text-center mb-4 mb-md-0">
-                    <!-- تم تعديل اسم ملف الصورة وامتداده وتوسيطه هنا -->
-                    <img src="profile.jpeg" class="rounded-circle profile-img mx-auto d-block" alt="Yousef R. A. Al Khateeb">
-                </div>
-                <div class="col-md-8">
-                    <h1 class="display-4 fw-bold mb-2">Yousef R. A. Al Khateeb</h1>
-                    <h5 class="text-muted mb-3">Computer Systems Engineering Graduate | Technical Support & Operations Specialist</h5>
-                    <!-- تفاصيل الاتصال المحدثة والنهائية -->
-                    <p class="text-secondary mb-3">
-                        <i class="fas fa-envelope me-2"></i>yousefrajab2018@gmail.com &nbsp;|&nbsp; 
-                        <i class="fas fa-phone me-2"></i>+972 592611538 &nbsp;|&nbsp; 
-                        <i class="fas fa-map-marker-alt me-2"></i>Palestine, Gaza
-                    </p>
-                    <p class="lead text-secondary mb-4">Bridging the gap between engineering systems, technical troubleshooting, and robust field operations.</p>
-                    <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
-                        <a href="#contact" class="btn btn-primary px-4 py-2"><i class="fas fa-envelope me-2"></i>Contact Me</a>
-                        <a href="https://github.com/yousefrajab" target="_blank" class="btn btn-dark px-4 py-2"><i class="fab fa-github me-2"></i>GitHub</a>
-                        <!-- تم تحديث رابط لينكد إن المخصص الجديد هنا -->
-                        <a href="https://www.linkedin.com/in/yousef-al-khateeb" target="_blank" class="btn btn-outline-primary px-4 py-2"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================= HERO ================= -->
+<header id="top">
+  <div class="wrap hero">
+    <div class="hero-l">
+      <div class="kicker">$ whoami</div>
+      <h1>Hi, I'm <span class="hl">Yousef Al Khateeb</span></h1>
+      <div class="typed-line">&gt; <span id="typed"></span><span class="cursor">&nbsp;</span></div>
+      <p class="lead">Computer Systems Engineering graduate from Palestine. I design and build reliable
+        web systems with <b>PHP, Laravel &amp; MySQL</b> — from database architecture to complete,
+        production-ready platforms. I thrive where engineering discipline meets real-world impact.</p>
+      <div class="cta">
+        <a class="btn pri" href="#projects">View My Work</a>
+        <a class="btn gho" href="#contact">Get In Touch</a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/yousefrajab" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.17c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.77 1.05.77 2.13v3.16c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/yousef-al-khateeb" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a href="mailto:yousefrajab2018@gmail.com" title="Email" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6L22 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-r">
+      <div class="avatar">
+        <div class="ring"></div>
+        <img src="profile.jpeg" alt="Yousef R. A. Al Khateeb"
+             onerror="this.style.display='none';this.parentElement.querySelector('.fallback').style.display='grid'">
+        <div class="fallback">&lt;/&gt;</div>
+      </div>
+    </div>
+  </div>
+</header>
 
-    <!-- About Section -->
-    <section id="about" class="py-5 bg-white">
-        <div class="container py-3">
-            <h2 class="section-title">Professional Summary</h2>
-            <div class="row">
-                <div class="col-lg-10">
-                    <p class="lead text-muted" style="line-height: 1.8;">
-                        A dedicated and highly adaptable Computer Systems Engineering graduate with practical experience combining technical expertise and field operations. Proven track record in humanitarian operations through coordination roles with World Central Kitchen (WCK), demonstrating strong crisis management, logistics coordination, and teamwork abilities. Possesses solid foundational skills in software development, database management, and networks. Exceptional ability to perform under pressure and adapt to challenging, fast-paced environments.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-t rv"><span class="no">01.</span><h2>About Me</h2><div class="rule"></div></div>
+    <div class="about-g">
+      <div class="card rv">
+        <p>I'm a <b>Back-End Web Developer</b> and Computer Systems Engineering graduate (Palestine Technical College – Deir El-Balah).
+        I specialize in building complete web systems with <b>PHP &amp; Laravel</b> on top of well-designed <b>MySQL</b> databases —
+        from schema and authentication to business logic and reporting.</p>
+        <p>My graduation project, a full <b>Hospital Management System</b>, and my latest release,
+        <b>ReliefFlow v1.0</b> (a humanitarian logistics platform with smart dispatch &amp; QR tracking),
+        reflect how I turn real-world problems into working software.</p>
+        <p>Before that, I spent a year inside humanitarian operations with <b>World Central Kitchen (WCK)</b> —
+        an experience that taught me precision, coordination, and how to deliver under pressure.</p>
+      </div>
+      <div class="facts rv">
+        <div class="fact"><span class="ic">📍</span><span class="tx">Nuseirat, Gaza Strip, Palestine</span></div>
+        <div class="fact"><span class="ic">🎓</span><span class="tx">B.Sc. Computer Systems Engineering<small>Palestine Technical College · 09/2020 – 10/2025</small></span></div>
+        <div class="fact"><span class="ic">💼</span><span class="tx">Open to opportunities<small>Back-End / Full-Stack (PHP · Laravel · MySQL)</small></span></div>
+        <div class="fact"><span class="ic">ICDL</span><span class="tx">ICDL Certified<small>International Computer Driving Licence · 2026</small></span></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-5">
-        <div class="container py-3">
-            <h2 class="section-title">My Skills</h2>
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="card p-4 h-100">
-                        <h4 class="fw-bold mb-3 text-primary"><i class="fas fa-code me-2"></i>Technical & Development</h4>
-                        <div class="d-flex flex-wrap">
-                            <span class="skill-badge skill-badge-tech">PHP</span>
-                            <span class="skill-badge skill-badge-tech">Laravel Framework</span>
-                            <span class="skill-badge skill-badge-tech">Python Fundamentals</span>
-                            <span class="skill-badge skill-badge-tech">JavaScript</span>
-                            <span class="skill-badge skill-badge-tech">MySQL</span>
-                            <span class="skill-badge skill-badge-tech">HTML5 & CSS3</span>
-                            <span class="skill-badge skill-badge-tech">Bootstrap</span>
-                            <span class="skill-badge skill-badge-tech">Computer Networks</span>
-                            <span class="skill-badge skill-badge-tech">System Troubleshooting</span>
-                            <span class="skill-badge skill-badge-tech">Server Administration</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card p-4 h-100">
-                        <h4 class="fw-bold mb-3 text-success"><i class="fas fa-users-cog me-2"></i>Management & Soft Skills</h4>
-                        <div class="d-flex flex-wrap">
-                            <span class="skill-badge">Crisis Management</span>
-                            <span class="skill-badge">Teamwork & Collaboration</span>
-                            <span class="skill-badge">Problem-Solving</span>
-                            <span class="skill-badge">Time Management</span>
-                            <span class="skill-badge">Effective Communication</span>
-                            <span class="skill-badge">Leadership</span>
-                            <span class="skill-badge">Adaptability</span>
-                            <span class="skill-badge">Working Under Pressure</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ================= SKILLS ================= -->
+<section id="skills" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-t rv"><span class="no">02.</span><h2>Skills &amp; Technologies</h2><div class="rule"></div></div>
+    <div class="sk-g">
+      <div class="card sk rv">
+        <h3>&lt;back-end /&gt; my core</h3>
+        <div class="tags">
+          <span class="tag hot">PHP</span><span class="tag hot">Laravel Framework</span><span class="tag hot">MySQL</span>
+          <span class="tag">Database Design (DBMS)</span><span class="tag">MVC Architecture</span>
+          <span class="tag">Authentication &amp; Roles</span><span class="tag">Python (Fundamentals)</span>
         </div>
-    </section>
-    <!-- Experience Section -->
-    <section id="experience" class="py-5 bg-white">
-        <div class="container py-3">
-            <h2 class="section-title">Professional Experience</h2>
-            <div class="timeline mt-4">
-                <div class="timeline-item">
-                    <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
-                        <h4 class="fw-bold text-dark mb-0">Distribution Team Member</h4>
-                        <span class="badge bg-primary px-3 py-2">10/2025 – 07/2026</span>
-                    </div>
-                    <h5 class="text-muted fw-semibold">World Central Kitchen (WCK) <span class="fs-6 fw-normal">| Gaza Strip, Palestine</span></h5>
-                    <ul class="text-muted mt-3" style="line-height: 1.7;">
-                        <li>Began as a Loader, assisting in moving meals for daily distribution activities.</li>
-                        <li>Responsible for distributing meals to different departments, ensuring each department received the required quantities on time.</li>
-                        <li>Distributed weekly allocations and operational supplies required by the Distribution Department.</li>
-                        <li>Assisted in organising daily distribution activities and maintaining accurate records.</li>
-                        <li>Worked closely with warehouse, kitchen, and distribution staff to ensure efficient operations in a humanitarian response environment.</li>
-                    </ul>
-                </div>
-            </div>
+      </div>
+      <div class="card sk rv">
+        <h3>&lt;front-end /&gt;</h3>
+        <div class="tags">
+          <span class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
+          <span class="tag">Bootstrap 5</span><span class="tag">Responsive UI</span>
         </div>
-    </section>
-    <!-- Projects Section -->
-    <section id="projects" class="py-5">
-        <div class="container py-3">
-            <h2 class="section-title">Projects</h2>
-            <div class="row g-4">
-                <div class="col-md-12">
-                    <div class="card p-4">
-                        <div class="d-flex flex-wrap justify-content-between align-items-center mb-2">
-                            <h4 class="fw-bold text-dark mb-0">Web-Based Hospital Management System</h4>
-                            <span class="badge bg-secondary">Bachelor Graduation Project</span>
-                        </div>
-                        <p class="text-muted my-3">
-                            Developed a full-featured, web-based system designed to streamline hospital administration tasks and optimize patient management workflows.
-                        </p>
-                        <h6 class="fw-bold mb-2 text-primary">Key Features:</h6>
-                        <ul class="text-muted" style="line-height: 1.7;">
-                            <li>Built integrated modules for patient registration and appointment scheduling.</li>
-                            <li>Implemented secure doctor/user authentication and medical history tracking.</li>
-                            <li>Generated automated administrative and reporting dashboards.</li>
-                        </ul>
-                        <div class="mt-3">
-                            <span class="badge bg-dark me-1">PHP</span>
-                            <span class="badge bg-dark me-1">Laravel</span>
-                            <span class="badge bg-dark me-1">MySQL</span>
-                            <span class="badge bg-dark me-1">JavaScript</span>
-                            <span class="badge bg-dark me-1">Bootstrap</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="card sk rv">
+        <h3>&lt;tools &amp; it /&gt;</h3>
+        <div class="tags">
+          <span class="tag">Git / GitHub</span><span class="tag">Computer Networks</span><span class="tag">System Maintenance</span>
+          <span class="tag">Server Administration (Basics)</span><span class="tag">Troubleshooting</span><span class="tag">Microsoft Office (ICDL)</span>
         </div>
-    </section>
+      </div>
+      <div class="card sk rv">
+        <h3>&lt;soft-skills /&gt;</h3>
+        <div class="tags">
+          <span class="tag">Problem-Solving</span><span class="tag">Working Under Pressure</span><span class="tag">Teamwork</span>
+          <span class="tag">Time Management</span><span class="tag">Communication</span><span class="tag">Leadership</span><span class="tag">Crisis Management</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Education & Certifications Section -->
-    <section id="education" class="py-5 bg-white">
-        <div class="container py-3">
-            <div class="row g-5">
-                <!-- Education -->
-                <div class="col-md-6">
-                    <h2 class="section-title">Education</h2>
-                    <div class="card p-4 mb-3">
-                        <span class="text-primary fw-semibold d-block mb-1">2021 – 2025</span>
-                        <h5 class="fw-bold">Bachelor of Computer Systems Engineering</h5>
-                        <p class="text-muted mb-2">Palestine Technical College – Deir El-Balah</p>
-                        <small class="text-muted d-block"><strong>Key Coursework:</strong> OOP, Data Structures, Software Engineering, Database Management Systems, Computer Networks.</small>
-                    </div>
-                </div>
-                <!-- Certifications -->
-                <div class="col-md-6">
-                    <h2 class="section-title">Certifications</h2>
-                    <div class="d-flex flex-column gap-3">
-                        <div class="card p-3">
-                            <h6 class="fw-bold mb-1">Networks and Systems Training Program (105 Hours)</h6>
-                            <small class="text-muted">Ministry of Telecommunications & IT | August 2023</small>
-                        </div>
-                        <div class="card p-3">
-                            <h6 class="fw-bold mb-1">Web Development: JS, MySQL, PHP & Laravel (60 Hours)</h6>
-                            <small class="text-muted">Vision Plus for Information Technology | September 2022</small>
-                        </div>
-                        <div class="card p-3">
-                            <h6 class="fw-bold mb-1">IT Foundations: Basic Programming Using Python (50 Hours)</h6>
-                            <small class="text-muted">Gaza Sky Geeks & Mercy Corps | July 2023</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-t rv"><span class="no">03.</span><h2>Featured Projects</h2><div class="rule"></div></div>
+
+    <div class="proj proj-feat rv">
+      <div class="tx">
+        <span class="badge">★ LATEST RELEASE — V1.0</span>
+        <h3>ReliefFlow — Humanitarian Logistics &amp; Supply Chain Platform</h3>
+        <div class="meta">12/2025 – 02/2026 · v1.0 released 07/2026 · PHP · Laravel · MySQL</div>
+        <p>A full-stack platform that models real-world humanitarian aid distribution — inspired by the operational
+           challenges I witnessed during my work with World Central Kitchen.</p>
+        <ul class="feat-l">
+          <li><b>Live inventory tracker</b> with automatic Critical Low Stock Alerts</li>
+          <li><b>Smart dispatch system</b> — real-time stock checks, auto deduction &amp; unique QR tracking codes</li>
+          <li><b>Role-based authentication</b> with full CRUD across all modules</li>
+          <li><b>A4-optimized printable</b> official cargo manifests</li>
+        </ul>
+        <div class="tags">
+          <span class="tag hot">PHP</span><span class="tag hot">Laravel</span><span class="tag hot">MySQL</span>
+          <span class="tag">JavaScript</span><span class="tag">Bootstrap 5</span><span class="tag">QR Codes</span>
         </div>
-    </section>
+        <p style="margin:16px 0 0"><a href="https://github.com/yousefrajab/relief-flow" target="_blank" rel="noopener">Source code on GitHub →</a></p>
+      </div>
+      <div class="vis">
+        <div class="codebox"><span class="c">// ReliefFlow v1.0</span>
+<span class="k">class</span> Dispatch {
+  + stockCheck()
+  + deductInventory()
+  + generateQR()
+}
+<span class="c">// Live Stock Tracker</span>
+stock &lt; threshold
+  → CriticalAlert()</div>
+      </div>
+    </div>
 
-    <footer id="contact" class="py-4 text-center">
+    <div class="proj-g">
+      <div class="card proj rv">
+        <h3>Web-Based Hospital Management System</h3>
+        <div class="meta">Bachelor Graduation Project · 09/2024 – 10/2025</div>
+        <p>A complete hospital administration platform: patient registration, appointment scheduling,
+           medical history tracking, secure doctor/user authentication, and automated reporting —
+           designed, built, and documented end-to-end (33 commits on GitHub).</p>
+        <div class="tags">
+          <span class="tag hot">PHP</span><span class="tag hot">Laravel</span><span class="tag hot">MySQL</span>
+          <span class="tag">JavaScript</span><span class="tag">Bootstrap</span>
+        </div>
+        <p style="margin:14px 0 0"><a href="https://github.com/yousefrajab/Hospital_Sys" target="_blank" rel="noopener">Source code on GitHub →</a></p>
+      </div>
+      <div class="card proj rv">
+        <h3>Why these projects matter</h3>
+        <div class="meta">Real systems · Real data · Real constraints</div>
+        <p>Both systems were built from scratch — database modeling, business logic, authentication
+           and role management — following Software Engineering practices from my academic background.</p>
+        <ul class="feat-l">
+          <li>Database-first design in MySQL</li>
+          <li>Role-based access control</li>
+          <li>Automated workflows &amp; reporting</li>
+          <li>Version-controlled development (Git/GitHub)</li>
+        </ul>
+      </div>
+    </div>
 
-    <!-- Bootstrap 5 Bundle JS with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="more-p rv">
+      <h3 style="font-family:var(--mono);color:var(--acc);font-size:.95rem;margin-bottom:12px">// more on GitHub</h3>
+      <div class="more-g">
+        <a class="mini" href="https://github.com/yousefrajab/Green-logistics" target="_blank" rel="noopener"><b>Green-logistics</b><small>Laravel · Blade · active</small></a>
+        <a class="mini" href="https://github.com/yousefrajab/sanad-ngo" target="_blank" rel="noopener"><b>Sanad NGO</b><small>Laravel · Blade</small></a>
+        <a class="mini" href="https://github.com/yousefrajab/page-summarizer" target="_blank" rel="noopener"><b>Page-Summarizer</b><small>JavaScript</small></a>
+        <a class="mini" href="https://github.com/yousefrajab/OnlineShop" target="_blank" rel="noopener"><b>OnlineShop</b><small>Java</small></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-t rv"><span class="no">04.</span><h2>Experience &amp; Education</h2><div class="rule"></div></div>
+    <div class="tl rv">
+      <div class="tl-item">
+        <div class="when">10/2025 – 07/2026 · Gaza Strip, Palestine</div>
+        <h3>Distribution Team Member</h3>
+        <div class="org">World Central Kitchen (WCK)</div>
+        <ul>
+          <li>Distributed meals across departments, ensuring each received required quantities on time.</li>
+          <li>Managed weekly allocations &amp; operational supplies for the Distribution Department.</li>
+          <li>Organized daily distribution activities and maintained accurate records in a fast-paced humanitarian response environment.</li>
+          <li>Coordinated closely with warehouse, kitchen &amp; distribution teams.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="when">09/2020 – 10/2025 · Deir El-Balah, Palestine</div>
+        <h3>B.Sc. Computer Systems Engineering</h3>
+        <div class="org">Palestine Technical College – Deir El-Balah</div>
+        <ul>
+          <li>Coursework: Data Structures, OOP, Computer Networks, Database Management Systems, Software Engineering.</li>
+          <li>Graduation project: Web-Based Hospital Management System (PHP / Laravel).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATIONS ================= -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="sec-t rv"><span class="no">05.</span><h2>Certifications &amp; Training</h2><div class="rule"></div></div>
+    <div class="cert-g">
+      <div class="card cert new rv">
+        <div class="ic">🖥️</div>
+        <h3>ICDL — International Computer Driving Licence</h3>
+        <p>As! Al-Bidaya Consulting and Training Company — Gaza · August 2026<br>Certificate No. BIDP2026009</p>
+        <span class="hrs">20 training hours</span>
+      </div>
+      <div class="card cert rv">
+        <div class="ic">🌐</div>
+        <h3>Networks and Systems Training Program</h3>
+        <p>Ministry of Telecommunications &amp; Information Technology · August 2023<br>Networks, system maintenance &amp; server administration.</p>
+        <span class="hrs">105 hours</span>
+      </div>
+      <div class="card cert rv">
+        <div class="ic">🐍</div>
+        <h3>IT Foundations: Python Programming</h3>
+        <p>Gaza Sky Geeks &amp; Mercy Corps · July 2023<br>Python fundamentals, problem-solving &amp; clean coding.</p>
+        <span class="hrs">50 hours</span>
+      </div>
+      <div class="card cert rv">
+        <div class="ic">⚡</div>
+        <h3>Web Development: JS, MySQL, PHP &amp; Laravel</h3>
+        <p>Vision Plus for Information Technology · September 2022<br>Building dynamic web applications.</p>
+        <span class="hrs">60 hours</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="card contact-box rv">
+      <div class="kicker">$ ./contact --init</div>
+      <h2>Let's build something reliable.</h2>
+      <p>I'm open to back-end / full-stack opportunities, freelance projects, and collaborations.
+         The fastest way to reach me is email — I usually reply within a day.</p>
+      <div class="c-row">
+        <a class="btn pri" href="mailto:yousefrajab2018@gmail.com">yousefrajab2018@gmail.com</a>
+        <a class="btn gho" href="https://github.com/yousefrajab" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn gho" href="https://www.linkedin.com/in/yousef-al-khateeb" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <p style="margin-top:22px;font-family:var(--mono);font-size:.9rem">📞 +970 59 261 1538</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="mono">&lt;/&gt;</span> with care by Yousef R. A. Al Khateeb · <span id="year"></span> · Gaza, Palestine
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // typing effect
+  const roles = ["Back-End Web Developer", "PHP & Laravel Specialist", "MySQL & Database Design", "I build systems that work."];
+  const tEl = document.getElementById('typed');
+  let ri = 0, ci = 0, del = false;
+  (function type(){
+    const word = roles[ri];
+    tEl.textContent = word.slice(0, ci);
+    if(!del && ci < word.length){ ci++; setTimeout(type, 65); }
+    else if(!del && ci === word.length){ del = true; setTimeout(type, 1600); }
+    else if(del && ci > 0){ ci--; setTimeout(type, 30); }
+    else { del = false; ri = (ri+1) % roles.length; setTimeout(type, 350); }
+  })();
+
+  // mobile menu
+  const links = document.getElementById('links');
+  document.getElementById('burger').onclick = () => links.classList.toggle('open');
+  links.querySelectorAll('a').forEach(a => a.onclick = () => links.classList.remove('open'));
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); }
+  }), {threshold:.12});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // active nav link
+  const secs = [...document.querySelectorAll('section[id], header[id]')];
+  const navA = [...document.querySelectorAll('.links a')];
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY + 90;
+    let cur = secs[0].id;
+    secs.forEach(s => { if(s.offsetTop <= y) cur = s.id; });
+    navA.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  }, {passive:true});
+</script>
 </body>
 </html>
